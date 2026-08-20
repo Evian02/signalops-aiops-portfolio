@@ -21,14 +21,14 @@ const html = `<!doctype html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="De Huo's AIOps engineering portfolio: explainable log analysis, anomaly detection, incident correlation, and operational runbooks." />
+    <meta name="description" content="A small learning demo for structured log analysis, baseline comparison, and rule-based alerts." />
     <meta property="og:title" content="SignalOps | AIOps Log Intelligence" />
-    <meta property="og:description" content="Explainable log analysis, anomaly detection, incident correlation, and operational runbooks." />
+    <meta property="og:description" content="A learning demo using synthetic logs, static baselines, and readable detection rules." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="${ogImage}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="SignalOps | AIOps Log Intelligence" />
-    <meta name="twitter:description" content="Explainable log analysis, anomaly detection, incident correlation, and operational runbooks." />
+    <meta name="twitter:description" content="A learning demo using synthetic logs, static baselines, and readable detection rules." />
     <meta name="twitter:image" content="${ogImage}" />
     <title>SignalOps | AIOps Log Intelligence</title>
     <link rel="stylesheet" href="./styles.css" />
