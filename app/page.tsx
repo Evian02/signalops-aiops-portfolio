@@ -110,8 +110,8 @@ export default function Home() {
         <div className="nav-links">
           <a href="#dashboard">Dashboard</a>
           <a href="#pipeline">Pipeline</a>
-          <a href="#about">About</a>
-          <a className="nav-cta" href="#repository">View project</a>
+          <a href="#repository">Evidence</a>
+          <a className="nav-cta" href="https://github.com/Evian02/signalops-aiops-portfolio">GitHub ↗</a>
         </div>
       </nav>
 
@@ -273,23 +273,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="about-section" id="about">
-        <div className="content-shell about-grid">
-          <div>
-            <p className="eyebrow"><span /> About the builder</p>
-            <h2>De Huo</h2>
-          </div>
-          <div className="about-details">
-            <a className="text-link" href="https://github.com/Evian02">github.com/Evian02 →</a>
-          </div>
-        </div>
-      </section>
-
       <footer>
         <div className="content-shell footer-inner">
           <a className="brand" href="#top"><span className="brand-mark">S</span><span>SignalOps</span></a>
-          <p>De Huo</p>
-          <a href="#top">Back to top ↑</a>
+          <a className="footer-profile" href="https://github.com/Evian02">De Huo · GitHub ↗</a>
+          <a className="back-to-top" href="#top">Back to top ↑</a>
         </div>
       </footer>
     </main>
