@@ -278,12 +278,9 @@ export default function Home() {
           <div>
             <p className="eyebrow"><span /> About the builder</p>
             <h2>De Huo</h2>
-            <p className="about-lead">Electronic Information Engineering graduate in Chengdu, focused on Python data processing, system debugging, and reliable automation.</p>
           </div>
           <div className="about-details">
-            <p>This project extends experience in OpenCV/NumPy signal processing, rule-based abnormal-state checks, parameter validation, and robot-system troubleshooting into an operations-focused software workflow.</p>
-            <div className="profile-facts"><span>IELTS 8.0</span><span>Chengdu, China</span><span>Available for ~9 months</span></div>
-            <a className="text-link" href="mailto:evian1226@126.com">evian1226@126.com →</a>
+            <a className="text-link" href="https://github.com/Evian02">github.com/Evian02 →</a>
           </div>
         </div>
       </section>
@@ -291,7 +288,7 @@ export default function Home() {
       <footer>
         <div className="content-shell footer-inner">
           <a className="brand" href="#top"><span className="brand-mark">S</span><span>SignalOps</span></a>
-          <p>Designed and engineered by De Huo · Chengdu</p>
+          <p>De Huo</p>
           <a href="#top">Back to top ↑</a>
         </div>
       </footer>
