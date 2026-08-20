@@ -1,62 +1,23 @@
-# SignalOps — Explainable AIOps Log Intelligence
+# SignalOps
 
-SignalOps is a compact, interview-ready AIOps project that turns structured service logs into operational signals, correlated incidents, and deterministic investigation runbooks.
+SignalOps is a small learning demo for structured log analysis. It uses synthetic data to show how logs, baselines, rule-based alerts, and runbooks can fit together in a basic AIOps workflow.
 
-The project intentionally uses transparent statistical baselines and rules instead of presenting a black-box model as artificial intelligence. Every alert can be traced to measured evidence, a documented threshold, and a testable response path.
+The project produces a fixed, reproducible example and is intended for code reading, local testing, and experimentation. It is not a production monitoring system.
 
-## What it demonstrates
+## What the demo does
 
-- Python data processing and structured-log parsing
-- Baseline comparison and rule-based anomaly detection
-- Error-rate, latency, event-volume, and repeated-pattern signals
-- Incident correlation and severity prioritization
-- Automated operational runbooks
-- Unit and integration testing with pytest
-- CI/CD checks and GitHub Pages deployment
-- A responsive operational dashboard generated from real pipeline output
+1. Reads and validates JSONL service logs.
+2. Calculates service-level error rates and latency statistics.
+3. Compares a current window with a static baseline.
+4. Applies readable rules for error rate, latency, repeated error codes, and event volume.
+5. Groups signals by service and attaches a short investigation checklist.
+6. Writes a JSON report used by the static dashboard.
 
-## Example result
+The included sample has three services and 900 current-window events. It is intentionally deterministic so that tests and dashboard output remain consistent.
 
-The deterministic sample contains three services and 900 current-window events. SignalOps identifies a checkout-service incident by correlating:
+## Run the analysis
 
-- an error-rate increase to 15%;
-- P95 latency above 2.1 seconds; and
-- 27 repeated `UPSTREAM_TIMEOUT` events.
-
-The report then attaches a short investigation runbook covering log grouping, trace review, recent-change comparison, and upstream dependency checks.
-
-## Architecture
-
-```mermaid
-flowchart LR
-    A[JSONL service logs] --> B[Parser and validation]
-    B --> C[Service metrics]
-    C --> D[Baseline comparison]
-    D --> E[Explainable detection rules]
-    E --> F[Incident correlation]
-    F --> G[Operational runbooks]
-    F --> H[JSON report]
-    H --> I[GitHub Pages dashboard]
-```
-
-Detailed design decisions are documented in [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
-
-## Repository structure
-
-```text
-signalops/              Python analysis engine
-scripts/                Deterministic data generator and Pages exporter
-data/                   Baseline and current JSONL samples
-public/data/report.json Generated operational report
-app/                    Portfolio dashboard source
-tests_python/           Parser, detector, and pipeline tests
-.github/workflows/      Quality and GitHub Pages automation
-docs/                   Architecture and Chinese learning materials
-```
-
-## Run locally
-
-Python 3.11+ and Node.js 22+ are recommended.
+Python 3.11 or later is recommended.
 
 ```bash
 python3 -m pip install -r requirements-dev.txt
@@ -68,47 +29,43 @@ python3 -m signalops analyze \
 python3 -m pytest
 ```
 
-For the portfolio site:
+## Run the dashboard
+
+Node.js 22 or later and pnpm are recommended.
 
 ```bash
 pnpm install
 pnpm run dev
 ```
 
-To produce the static GitHub Pages artifact:
+To rebuild the static GitHub Pages files:
 
 ```bash
 pnpm run export:pages
 ```
 
-## Detection rules
+## Project map
 
-| Signal | Evidence | Default behavior |
-| --- | --- | --- |
-| Error-rate spike | Current error rate versus baseline | Opens a high or critical signal above the documented threshold |
-| Latency spike | Current P95 latency versus baseline | Flags sustained operational slowdown |
-| Repeated error pattern | Frequency of structured error codes | Groups recurring failures into one actionable pattern |
-| Event-volume drop | Current service volume versus baseline | Detects possible ingestion, routing, or availability issues |
+```text
+signalops/              Python analysis code
+scripts/                Sample-data generator and static-site exporter
+data/                   Synthetic baseline and current JSONL samples
+public/data/report.json Generated analysis report
+app/                    Dashboard source
+tests_python/           Parser, detector, and pipeline tests
+.github/workflows/      Automated checks and Pages deployment
+docs/                   Architecture notes and a Chinese learning note
+```
 
-Thresholds are deliberately readable in [`signalops/detector.py`](signalops/detector.py) and covered by tests.
+See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the data flow and design choices. [`docs/LEARNING_GUIDE_ZH.md`](docs/LEARNING_GUIDE_ZH.md) records the concepts I am using this demo to study.
 
-## GitHub Pages setup
+## Limits
 
-1. Push the project to the `main` branch.
-2. In **Settings → Pages**, select **GitHub Actions** as the source.
-3. Run the deployment workflow, or push a new commit to `main`.
-
-Never commit passwords, tokens, private logs, or real customer data. The included data is synthetic and deterministic.
-
-## Learning and interview preparation
-
-- [`docs/LEARNING_GUIDE_ZH.md`](docs/LEARNING_GUIDE_ZH.md) explains each module in Chinese.
-- [`docs/INTERVIEW_GUIDE_ZH.md`](docs/INTERVIEW_GUIDE_ZH.md) provides an honest project explanation and likely interview questions.
-
-## Author
-
-**De Huo** — Electronic Information Engineering graduate based in Chengdu, China.  
-Python/OpenCV data processing · system debugging · IELTS 8.0
+- All logs are synthetic; no customer or production data is included.
+- Detection uses fixed thresholds and a static baseline, not machine learning.
+- There is no streaming input, database, cloud-platform integration, authentication, or automatic remediation.
+- The generated runbook is a checklist selected by rules; it does not diagnose or fix a real incident.
+- Results from this sample should not be treated as evidence of production reliability.
 
 ## License
 

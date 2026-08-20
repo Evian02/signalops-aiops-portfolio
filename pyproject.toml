@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "signalops"
 version = "1.0.0"
-description = "Explainable log analysis, anomaly detection, and incident guidance for an AIOps portfolio."
+description = "A small learning demo for structured log analysis and rule-based alerts."
 requires-python = ">=3.11"
 dependencies = []
 
