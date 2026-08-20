@@ -1,0 +1,252 @@
+{
+  "meta": {
+    "project": "SignalOps",
+    "engine_version": "1.0.0",
+    "generated_at": "2026-08-20T09:29:54+00:00",
+    "detection_mode": "rule-based statistical baseline",
+    "source": "sample_logs.jsonl",
+    "baseline_source": "baseline_logs.jsonl"
+  },
+  "summary": {
+    "total_logs": 900,
+    "total_errors": 57,
+    "overall_error_rate": 0.0633,
+    "services_monitored": 3,
+    "signals_detected": 3,
+    "incidents_opened": 1,
+    "critical_incidents": 1
+  },
+  "services": [
+    {
+      "service": "auth-service",
+      "total": 300,
+      "errors": 5,
+      "warnings": 7,
+      "error_rate": 0.0167,
+      "p95_latency_ms": 163.69,
+      "average_latency_ms": 120.48
+    },
+    {
+      "service": "catalog-api",
+      "total": 300,
+      "errors": 7,
+      "warnings": 11,
+      "error_rate": 0.0233,
+      "p95_latency_ms": 235.35,
+      "average_latency_ms": 180.03
+    },
+    {
+      "service": "checkout-api",
+      "total": 300,
+      "errors": 45,
+      "warnings": 2,
+      "error_rate": 0.15,
+      "p95_latency_ms": 2186.33,
+      "average_latency_ms": 678.84
+    }
+  ],
+  "signals": [
+    {
+      "service": "checkout-api",
+      "kind": "error_rate_spike",
+      "severity": "critical",
+      "title": "Error rate exceeded the rolling baseline",
+      "observed": 0.15,
+      "baseline": 0.0,
+      "threshold": 0.05,
+      "anomaly_score": 0.99,
+      "evidence": "45 errors across 300 events",
+      "runbook_id": "RB-ERROR-RATE"
+    },
+    {
+      "service": "checkout-api",
+      "kind": "latency_spike",
+      "severity": "high",
+      "title": "P95 latency increased beyond the expected range",
+      "observed": 2186.33,
+      "baseline": 325.73,
+      "threshold": 800.0,
+      "anomaly_score": 0.99,
+      "evidence": "P95 latency reached 2186 ms",
+      "runbook_id": "RB-LATENCY"
+    },
+    {
+      "service": "checkout-api",
+      "kind": "repeated_error_pattern",
+      "severity": "high",
+      "title": "Repeated error pattern: UPSTREAM_TIMEOUT",
+      "observed": 27.0,
+      "baseline": 0.0,
+      "threshold": 8.0,
+      "anomaly_score": 0.87,
+      "evidence": "UPSTREAM_TIMEOUT appeared 27 times in the analysis window",
+      "runbook_id": "RB-ERROR-PATTERN"
+    }
+  ],
+  "incidents": [
+    {
+      "incident_id": "INC-001",
+      "service": "checkout-api",
+      "severity": "critical",
+      "title": "Error rate exceeded the rolling baseline",
+      "summary": "45 errors across 300 events; P95 latency reached 2186 ms; UPSTREAM_TIMEOUT appeared 27 times in the analysis window",
+      "signal_kinds": [
+        "error_rate_spike",
+        "latency_spike",
+        "repeated_error_pattern"
+      ],
+      "recommended_actions": [
+        "Group recent error messages and trace IDs to identify the dominant failure pattern.",
+        "Compare the incident window with recent releases or configuration changes.",
+        "Check upstream dependency health before deciding whether to retry, isolate, or roll back.",
+        "Compare endpoint latency and request volume with the baseline window."
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "timestamp": "2026-08-20T09:00:00+00:00",
+      "service": "auth-service",
+      "total": 50,
+      "errors": 2,
+      "error_rate": 0.04,
+      "p95_latency_ms": 168.0
+    },
+    {
+      "timestamp": "2026-08-20T09:00:00+00:00",
+      "service": "catalog-api",
+      "total": 50,
+      "errors": 1,
+      "error_rate": 0.02,
+      "p95_latency_ms": 226.84
+    },
+    {
+      "timestamp": "2026-08-20T09:00:00+00:00",
+      "service": "checkout-api",
+      "total": 50,
+      "errors": 3,
+      "error_rate": 0.06,
+      "p95_latency_ms": 315.79
+    },
+    {
+      "timestamp": "2026-08-20T09:05:00+00:00",
+      "service": "auth-service",
+      "total": 50,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p95_latency_ms": 166.82
+    },
+    {
+      "timestamp": "2026-08-20T09:05:00+00:00",
+      "service": "catalog-api",
+      "total": 50,
+      "errors": 1,
+      "error_rate": 0.02,
+      "p95_latency_ms": 244.76
+    },
+    {
+      "timestamp": "2026-08-20T09:05:00+00:00",
+      "service": "checkout-api",
+      "total": 50,
+      "errors": 3,
+      "error_rate": 0.06,
+      "p95_latency_ms": 324.28
+    },
+    {
+      "timestamp": "2026-08-20T09:10:00+00:00",
+      "service": "auth-service",
+      "total": 50,
+      "errors": 1,
+      "error_rate": 0.02,
+      "p95_latency_ms": 163.68
+    },
+    {
+      "timestamp": "2026-08-20T09:10:00+00:00",
+      "service": "catalog-api",
+      "total": 50,
+      "errors": 2,
+      "error_rate": 0.04,
+      "p95_latency_ms": 257.18
+    },
+    {
+      "timestamp": "2026-08-20T09:10:00+00:00",
+      "service": "checkout-api",
+      "total": 50,
+      "errors": 1,
+      "error_rate": 0.02,
+      "p95_latency_ms": 346.15
+    },
+    {
+      "timestamp": "2026-08-20T09:15:00+00:00",
+      "service": "auth-service",
+      "total": 50,
+      "errors": 1,
+      "error_rate": 0.02,
+      "p95_latency_ms": 160.88
+    },
+    {
+      "timestamp": "2026-08-20T09:15:00+00:00",
+      "service": "catalog-api",
+      "total": 50,
+      "errors": 3,
+      "error_rate": 0.06,
+      "p95_latency_ms": 235.35
+    },
+    {
+      "timestamp": "2026-08-20T09:15:00+00:00",
+      "service": "checkout-api",
+      "total": 50,
+      "errors": 2,
+      "error_rate": 0.04,
+      "p95_latency_ms": 1498.99
+    },
+    {
+      "timestamp": "2026-08-20T09:20:00+00:00",
+      "service": "auth-service",
+      "total": 50,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p95_latency_ms": 161.08
+    },
+    {
+      "timestamp": "2026-08-20T09:20:00+00:00",
+      "service": "catalog-api",
+      "total": 50,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p95_latency_ms": 228.29
+    },
+    {
+      "timestamp": "2026-08-20T09:20:00+00:00",
+      "service": "checkout-api",
+      "total": 50,
+      "errors": 19,
+      "error_rate": 0.38,
+      "p95_latency_ms": 2487.98
+    },
+    {
+      "timestamp": "2026-08-20T09:25:00+00:00",
+      "service": "auth-service",
+      "total": 50,
+      "errors": 1,
+      "error_rate": 0.02,
+      "p95_latency_ms": 164.38
+    },
+    {
+      "timestamp": "2026-08-20T09:25:00+00:00",
+      "service": "catalog-api",
+      "total": 50,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p95_latency_ms": 233.83
+    },
+    {
+      "timestamp": "2026-08-20T09:25:00+00:00",
+      "service": "checkout-api",
+      "total": 50,
+      "errors": 17,
+      "error_rate": 0.34,
+      "p95_latency_ms": 2271.28
+    }
+  ]
+}
