@@ -1,0 +1,35 @@
+name: Quality checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Python test tools
+        run: python -m pip install -r requirements-dev.txt
+      - name: Generate deterministic logs and report
+        run: |
+          python scripts/generate_sample_logs.py
+          python -m signalops analyze --input data/sample_logs.jsonl --baseline data/baseline_logs.jsonl --output public/data/report.json
+      - name: Test analysis engine
+        run: python -m pytest
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.19.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: pnpm
+      - name: Install web dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build and test portfolio
+        run: pnpm test
+      - name: Export GitHub Pages artifact
+        run: pnpm run export:pages
