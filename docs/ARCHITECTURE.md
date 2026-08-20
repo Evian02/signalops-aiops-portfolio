@@ -2,7 +2,7 @@
 
 ## Goal
 
-SignalOps demonstrates a complete but deliberately small operational-analysis workflow. It is not positioned as a production monitoring replacement. Its purpose is to make data flow, assumptions, failure modes, and verification easy to inspect.
+SignalOps is a deliberately small operational-analysis demo. Its purpose is to keep the data flow, assumptions, and failure modes easy to inspect. It is not a replacement for a production monitoring system.
 
 ## Data contract
 
@@ -24,15 +24,15 @@ The parser rejects malformed input with line-level error messages. This prevents
 4. **Detect** — run transparent rules for error rates, latency, volume, and repeated error codes.
 5. **Correlate** — combine multiple signals for one service into a prioritized incident.
 6. **Respond** — attach deterministic investigation steps selected by signal type.
-7. **Publish** — serialize a machine-readable report consumed by the portfolio dashboard.
+7. **Publish** — serialize a machine-readable report consumed by the static dashboard.
 
 ## Why rule-based detection
 
-The SAP role explicitly includes both AI/ML and rule-based intelligence. For a first AIOps project, transparent rules provide several advantages:
+This demo uses transparent rules because they keep the behavior easy to inspect:
 
 - thresholds can be justified and tested;
 - false positives are easier to investigate;
-- the candidate can explain every decision in an interview;
+- each result can be traced back to its input and threshold;
 - the design can later be extended with statistical or ML detectors without changing the rest of the pipeline.
 
 The `anomaly_score` is an explainable prioritization score derived from threshold exceedance. It is not presented as a calibrated probability.
