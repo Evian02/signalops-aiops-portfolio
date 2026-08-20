@@ -117,12 +117,12 @@ export default function Home() {
 
       <section className="hero" id="top">
         <div className="hero-copy">
-          <p className="eyebrow"><span /> AIOps engineering portfolio · De Huo</p>
+          <p className="eyebrow"><span /> Structured log analysis · learning demo</p>
           <h1>Turn noisy logs into<br /><em>actionable signals.</em></h1>
           <p className="hero-text">
-            SignalOps is an explainable Python monitoring pipeline that analyzes
-            service logs, detects abnormal behavior, groups operational incidents,
-            and recommends clear investigation steps.
+            A small rule-based demo that reads synthetic service logs, compares
+            them with a baseline, groups related signals, and produces a static
+            investigation checklist.
           </p>
           <div className="hero-actions">
             <a className="button primary" href="#dashboard">Explore the report</a>
@@ -137,10 +137,10 @@ export default function Home() {
           <div className="console-head">
             <div className="window-dots" aria-hidden="true"><i /><i /><i /></div>
             <span>latest-analysis.json</span>
-            <b>LIVE REPORT</b>
+            <b>SAMPLE REPORT</b>
           </div>
           <pre>{consoleOutput}</pre>
-          <div className="pulse-line"><span /><small>Pipeline healthy · report generated {generatedTime} UTC</small></div>
+          <div className="pulse-line"><span /><small>Sample report generated {generatedTime} UTC</small></div>
         </div>
       </section>
 
@@ -260,9 +260,9 @@ export default function Home() {
       <section className="engineering-section" id="repository">
         <div className="content-shell engineering-grid">
           <div className="section-intro compact">
-            <p className="eyebrow"><span /> Engineering evidence</p>
-            <h2>Small enough to audit. Complete enough to run.</h2>
-            <p>The repository is structured as an interview-ready engineering project, with deterministic data, modular Python code, automated checks, and a reproducible report.</p>
+            <p className="eyebrow"><span /> Repository notes</p>
+            <h2>Small enough to inspect and run locally.</h2>
+            <p>The demo uses deterministic synthetic data, modular Python code, automated checks, and a reproducible report. It is intended for code reading and experimentation, not production monitoring.</p>
           </div>
           <div className="evidence-grid">
             <article><strong>1,800</strong><span>Deterministic sample and baseline log events</span></article>
